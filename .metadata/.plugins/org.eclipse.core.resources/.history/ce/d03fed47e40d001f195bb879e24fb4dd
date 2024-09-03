@@ -1,0 +1,25 @@
+package com.happy.coding.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.happy.coding.dto.EmployeDTO;
+
+
+
+public class FeignClientService implements FeignClient {
+	
+	
+	@Autowired
+	private  FeignClient feignClient;
+	
+	
+	
+	public List<EmployeDTO> getAllEmployees(@PathVariable int depId) {
+		return feignClient.getAllEmployees(depId);
+	}
+
+}

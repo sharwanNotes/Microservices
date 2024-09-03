@@ -1,0 +1,2 @@
+spring.application.name=API-Gatway
+server.port=9191

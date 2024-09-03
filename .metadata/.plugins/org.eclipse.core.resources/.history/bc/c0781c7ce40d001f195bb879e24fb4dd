@@ -1,0 +1,34 @@
+package com.happy.coding.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.happy.coding.dto.EmployeDTO;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
+
+
+public class FeignClientService implements FeignClient {
+	
+	
+	@Autowired
+	private  FeignClient feignClient;
+	
+	
+	@CircuitBreaker(name = "Department-service",fallbackMethod = "defaultMethod")
+	public List<EmployeDTO> getAllEmployees(@PathVariable int depId) {
+		return feignClient.getAllEmployees(depId);
+	}
+	
+	public List<EmployeDTO> defaultMethod(Exception e){
+		
+		return new ArrayList<>();
+		
+	}
+
+}

@@ -1,0 +1,12 @@
+spring.application.name=API-Gatway
+server.port=9191
+
+#Department-service
+spring.cloud.gateway.routes[0].id=Department-service
+spring.cloud.gateway.routes[0].uri=lb://Department-service
+spring.cloud.gateway.routes[0].predicates[0]=Path=/**
+ 
+#Employee-service
+spring.cloud.gateway.routes[1].id=Employee-service
+spring.cloud.gateway.routes[1].uri=lb://Employee-service
+spring.cloud.gateway.routes[1].predicates[0]=Path=/**
